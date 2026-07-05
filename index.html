@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Baron Smite — Secure the Nashor</title>
-<link rel="stylesheet" href="css/base.css?v=10">
-<link rel="stylesheet" href="css/components.css?v=10">
-<link rel="stylesheet" href="css/screens.css?v=10">
+<link rel="stylesheet" href="css/base.css?v=11">
+<link rel="stylesheet" href="css/components.css?v=11">
+<link rel="stylesheet" href="css/screens.css?v=11">
 </head>
 <body>
 <div class="particles" id="particles"></div>
@@ -16,13 +16,22 @@
   <div class="start-card">
     <div class="title">Fosse du Baron</div>
     <div class="subtitle">BARON SMITE</div>
-    <p class="start-rule">
-      Le Smite inflige <b>1400 dégâts bruts</b>.<br>
-      Toute l'équipe frappe le Baron — sa vie chute de façon saccadée.<br>
-      Smite <b>le plus près possible de 1400 PV</b> :<br>
-      1400 = <b>JACKPOT</b> · 1350 = PERFECT · 1300 = GOOD · 1200 = BOF.<br>
-      Au-dessus de 1400 : le Smite ne tue pas. Sous 1200 : volé.
+    <p class="start-tagline">
+      Toute l'équipe démolit le Baron.<br>
+      À toi de l'<b>achever au Smite</b> — au PV près.
     </p>
+    <p class="start-goal">
+      Déclenche Smite entre <b>1200 et 1400 PV</b>.<br>Le plus près de <b>1400</b>, le meilleur score.
+    </p>
+
+    <div class="grade-scale" aria-hidden="true">
+      <span class="gs gs-jackpot">1400<small>Jackpot</small></span>
+      <span class="gs gs-perfect">1350<small>Perfect</small></span>
+      <span class="gs gs-good">1300<small>Good</small></span>
+      <span class="gs gs-bof">1200<small>Bof</small></span>
+    </div>
+    <p class="start-fail">au-dessus de 1400, le Smite ne tue pas&nbsp;·&nbsp;sous 1200, c'est volé</p>
+
     <input class="pseudo-input" id="pseudo" type="text" maxlength="20"
            placeholder="Ton pseudo" autocomplete="off" spellcheck="false">
     <button class="startbtn" id="startbtn">COMMENCER</button>
