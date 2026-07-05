@@ -50,7 +50,7 @@ img.baron{width:auto;height:clamp(150px,42vw,205px);object-fit:contain;
   box-shadow:0 0 10px rgba(255,220,60,.8), inset 0 2px 4px rgba(255,255,255,.45);
   opacity:0;transition:opacity .14s;
 }
-.hpsmite.show{opacity:1;animation:smitePulse .48s ease-in-out}
+.hpsmite.show{opacity:1;animation:smitePulse .2s ease-in-out}
 @keyframes smitePulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.35)}}
 
 /* segment ticks */

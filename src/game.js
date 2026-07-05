@@ -96,7 +96,7 @@ function showSmiteChunk(snap){
 }
 function hideSmiteChunk(){ els.hpSmite.classList.remove('show'); }
 
-const SMITE_DELAY = 480; // ms the yellow chunk stays before it's chunked off
+const SMITE_DELAY = 200; // ms the yellow chunk stays before it's chunked off
 
 export function doSmite(){
   if(!state.running) return;
