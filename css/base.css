@@ -42,29 +42,30 @@ body{
 .flash.go{animation:flash .35s}
 @keyframes flash{0%{opacity:.6;background:#fff}100%{opacity:0}}
 
-/* stage + header */
+/* stage + header — fluid, so no shell breakpoints needed */
 .stage{
   position:relative;z-index:1;
   width:min(720px,94vw);
   margin:auto;              /* centres AND stays scrollable when taller than the viewport */
-  padding:22px 26px 26px;
+  padding:clamp(14px,4vw,22px) clamp(12px,3vw,26px) clamp(20px,4vw,26px);
   text-align:center;
 }
 .title{
-  font-size:13px;letter-spacing:5px;text-transform:uppercase;
+  font-size:clamp(10px,2.6vw,13px);letter-spacing:clamp(3px,1.2vw,5px);text-transform:uppercase;
   color:var(--gold);opacity:.85;margin-bottom:2px;
 }
 .subtitle{
-  font-size:26px;font-weight:bold;letter-spacing:1px;
+  font-size:clamp(20px,5.4vw,26px);font-weight:bold;letter-spacing:1px;
   background:linear-gradient(180deg,#f0e6d2,#c8aa6e);
   -webkit-background-clip:text;background-clip:text;color:transparent;
   text-shadow:0 0 30px rgba(200,170,110,.15);
-  margin-bottom:18px;
+  margin-bottom:clamp(10px,2.6vw,18px);
 }
 
-/* ===== Mobile (shell) ===== */
-@media (max-width:480px){
-  .stage{padding:14px 12px 20px}
-  .title{font-size:11px;letter-spacing:3px}
-  .subtitle{font-size:21px;margin-bottom:10px}
+/* ===== Accessibility (WCAG 2.2) ===== */
+/* 2.4.11 Focus Appearance — visible 2px focus ring on every interactive control */
+:focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px;border-radius:4px}
+/* 2.3.3 — respect users who ask for less motion */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
 }

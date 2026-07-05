@@ -1,17 +1,18 @@
-/* ===== Baron ===== */
+/* ===== Baron (fluid: sizes track the viewport, fixed pit height avoids CLS) ===== */
 .pit{
-  position:relative;margin:6px auto 16px;width:250px;height:210px;
+  position:relative;margin:6px auto clamp(8px,2.4vw,16px);
+  width:clamp(190px,56vw,250px);height:clamp(150px,44vw,210px);
   display:flex;align-items:center;justify-content:center;
 }
 .pit-glow{
-  position:absolute;width:230px;height:230px;border-radius:50%;
+  position:absolute;width:clamp(175px,50vw,230px);height:clamp(175px,50vw,230px);border-radius:50%;
   background:radial-gradient(circle,rgba(123,47,191,.45) 0%,transparent 65%);
   animation:pulse 3s ease-in-out infinite;
 }
 @keyframes pulse{0%,100%{transform:scale(.9);opacity:.7}50%{transform:scale(1.1);opacity:1}}
-.baron{width:170px;height:170px;filter:drop-shadow(0 0 18px rgba(176,107,255,.6));transition:transform .1s}
+.baron{width:clamp(128px,34vw,170px);height:clamp(128px,34vw,170px);filter:drop-shadow(0 0 18px rgba(176,107,255,.6));transition:transform .1s}
 /* real Baron Nashor render (transparent PNG) — tall, so size by height */
-img.baron{width:auto;height:205px;object-fit:contain;
+img.baron{width:auto;height:clamp(150px,42vw,205px);object-fit:contain;
   filter:drop-shadow(0 0 20px rgba(176,107,255,.65))}
 /* hit feedback: a brief glow flash — the Baron stays still (no shake) */
 .baron.hit{animation:hitflash .16s}
@@ -31,7 +32,7 @@ img.baron{width:auto;height:205px;object-fit:contain;
 }
 .hpname b{color:var(--void-bright);font-size:14px}
 .hpbar{
-  position:relative;height:30px;border:2px solid var(--gold);border-radius:4px;
+  position:relative;height:clamp(24px,5.5vw,30px);border:2px solid var(--gold);border-radius:4px;
   background:#04101c;overflow:hidden;
   box-shadow:0 0 0 1px #000, inset 0 0 12px rgba(0,0,0,.8);
 }
@@ -45,15 +46,15 @@ img.baron{width:auto;height:205px;object-fit:contain;
 .hpticks{position:absolute;inset:0;pointer-events:none;
   background-image:repeating-linear-gradient(90deg,transparent,transparent 27px,rgba(0,0,0,.35) 27px,rgba(0,0,0,.35) 28px)}
 .hpnum{
-  margin-top:8px;font-size:22px;font-weight:bold;letter-spacing:1px;
+  margin-top:8px;font-size:clamp(18px,4.6vw,22px);font-weight:bold;letter-spacing:1px;
   font-variant-numeric:tabular-nums;color:var(--gold-bright);
 }
 .hpnum small{font-size:13px;color:var(--gold);opacity:.7}
 
 /* ===== Team (Data Dragon champion icons) ===== */
-.team{display:flex;justify-content:center;gap:10px;min-height:44px;margin:2px 0 14px;flex-wrap:wrap}
+.team{display:flex;justify-content:center;gap:clamp(6px,2vw,10px);min-height:clamp(34px,9vw,44px);margin:2px 0 clamp(10px,2.6vw,14px);flex-wrap:wrap}
 .team .champ{
-  width:40px;height:40px;border-radius:50%;overflow:hidden;
+  width:clamp(30px,9vw,40px);height:clamp(30px,9vw,40px);border-radius:50%;overflow:hidden;
   border:2px solid var(--gold);background:#04101c;
   box-shadow:0 0 0 1px #000, 0 2px 6px rgba(0,0,0,.6);
   transition:transform .09s, box-shadow .12s, border-color .12s;
@@ -67,17 +68,18 @@ img.baron{width:auto;height:205px;object-fit:contain;
 
 /* ===== Smite button (in-game spell look: icon + damage number, no border) ===== */
 .smitebtn{
-  margin-top:16px;position:relative;
-  width:112px;height:112px;border-radius:12px;padding:0;cursor:pointer;
+  margin-top:clamp(12px,3vw,16px);position:relative;
+  width:clamp(92px,26vw,112px);height:clamp(92px,26vw,112px);border-radius:12px;padding:0;cursor:pointer;
   border:none;background:#0a1a2a;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;   /* centres the emoji fallback fluidly */
   filter:drop-shadow(0 0 12px rgba(255,140,40,.45));
   transition:transform .08s, filter .2s;
 }
 .smitebtn:hover{filter:drop-shadow(0 0 20px rgba(255,140,40,.8))}
 .smitebtn:active{transform:scale(.94)}
 .smitebtn:disabled{opacity:.4;cursor:not-allowed;filter:grayscale(.6)}
-/* emoji fallback, centred, when the real icon hasn't loaded */
-.smitebtn .icon{font-size:64px;line-height:112px;filter:drop-shadow(0 0 8px rgba(255,160,40,.8))}
+/* emoji fallback when the real icon hasn't loaded */
+.smitebtn .icon{font-size:clamp(46px,13vw,64px);line-height:1;filter:drop-shadow(0 0 8px rgba(255,160,40,.8))}
 /* real Smite icon fills the button */
 .smitebtn .icon-img{width:100%;height:100%;object-fit:cover;border:none;filter:none}
 /* display gated on :not([hidden]) so the `hidden` attribute still hides them */
@@ -87,7 +89,7 @@ img.baron{width:auto;height:205px;object-fit:contain;
 .smite-dmg{
   position:absolute;left:0;right:0;bottom:0;
   padding:3px 0 4px;text-align:center;
-  font-size:22px;font-weight:bold;letter-spacing:1px;
+  font-size:clamp(17px,4.6vw,22px);font-weight:bold;letter-spacing:1px;
   color:var(--gold-bright);font-variant-numeric:tabular-nums;
   background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.82));
   text-shadow:0 1px 2px #000,0 0 6px rgba(0,0,0,.9);
@@ -117,15 +119,15 @@ img.baron{width:auto;height:205px;object-fit:contain;
   opacity:0;transform:translateY(8px);transition:.3s;pointer-events:none;
 }
 .result.show{opacity:1;transform:none}
-.result .grade{font-size:30px;font-weight:bold;letter-spacing:2px}
-.result .desc{font-size:14px;color:var(--gold-bright);line-height:1.5}
+.result .grade{font-size:clamp(22px,6vw,30px);font-weight:bold;letter-spacing:2px}
+.result .desc{font-size:clamp(13px,3.4vw,14px);color:var(--gold-bright);line-height:1.5}
 .result .pvbig{
   display:block;margin:6px 0 2px;
-  font-size:40px;font-weight:bold;letter-spacing:1px;
+  font-size:clamp(30px,8vw,40px);font-weight:bold;letter-spacing:1px;
   font-variant-numeric:tabular-nums;color:var(--gold-bright);
   text-shadow:0 0 22px rgba(240,230,210,.25);
 }
-.result .pvbig small{font-size:16px;color:var(--gold);opacity:.75;letter-spacing:2px}
+.result .pvbig small{font-size:clamp(14px,3.6vw,16px);color:var(--gold);opacity:.75;letter-spacing:2px}
 .result .again{
   margin-top:8px;pointer-events:auto;cursor:pointer;
   background:transparent;border:2px solid var(--gold);color:var(--gold-bright);
@@ -143,7 +145,7 @@ img.baron{width:auto;height:205px;object-fit:contain;
 .scores b{color:var(--void-bright)}
 
 /* ===== Leaderboard ===== */
-.leaderboard{margin:20px auto 0;max-width:340px;text-align:left}
+.leaderboard{margin:clamp(16px,4vw,20px) auto 0;max-width:min(340px,92vw);text-align:left}
 .lb-title{text-align:center;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
 .lb-list{list-style:none;counter-reset:rank;display:flex;flex-direction:column;gap:3px}
 .lb-list li{
@@ -159,27 +161,5 @@ img.baron{width:auto;height:205px;object-fit:contain;
 .lb-list li.me{background:rgba(200,170,110,.14);box-shadow:inset 0 0 0 1px rgba(200,170,110,.4)}
 .lb-empty{text-align:center;font-size:12px;color:var(--gold);opacity:.6;padding:6px}
 
-/* ===== Mobile (components) ===== */
-@media (max-width:480px){
-  .pit{width:190px;height:150px;margin:0 auto 8px}
-  .pit-glow{width:180px;height:180px}
-  .baron{width:132px;height:132px}
-  img.baron{height:152px}
-
-  .team{gap:7px;min-height:36px;margin:0 0 10px}
-  .team .champ{width:34px;height:34px}
-
-  .hpbar{height:26px}
-  .hpnum{font-size:19px;margin-top:6px}
-
-  .smitebtn{width:96px;height:96px;margin-top:12px}
-  .smitebtn .icon{font-size:54px;line-height:96px}
-  .smite-dmg{font-size:19px;padding:2px 0 3px}
-
-  .rules{margin-top:12px}
-  .result .grade{font-size:24px}
-  .result .pvbig{font-size:32px}
-  .result .pvbig small{font-size:14px}
-
-  .leaderboard{margin-top:16px}
-}
+/* Interactive controls keep a comfortable tap target (WCAG 2.2 Target Size) */
+.smitebtn,.result .again,.rules>summary{min-height:24px}
