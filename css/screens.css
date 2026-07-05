@@ -1,14 +1,15 @@
 /* ===== Start screen overlay ===== */
 .startscreen{
   position:fixed;inset:0;z-index:20;
-  display:flex;                 /* centring via margin:auto keeps the card scrollable */
-  overflow-y:auto;
+  overflow-y:auto;               /* scrolls if the card is taller than the screen */
+  padding:clamp(20px,6vh,64px) clamp(16px,4vw,24px);
   background:radial-gradient(circle at 50% 35%, rgba(18,33,58,.9), rgba(1,10,19,.97));
   -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
   transition:opacity .35s;
 }
 .startscreen.hide{opacity:0;pointer-events:none}
-.start-card{text-align:center;max-width:470px;padding:clamp(16px,4vw,22px);margin:auto}
+/* plain block centring — no flex, can't shrink-wrap */
+.start-card{text-align:center;max-width:470px;margin:0 auto;padding:clamp(16px,4vw,22px)}
 .start-rule{margin:clamp(12px,3vw,16px) auto clamp(20px,5vw,28px);font-size:clamp(13px,3.6vw,15px);line-height:1.75;color:var(--gold-bright);opacity:.92}
 .start-rule b{color:var(--blue)}
 .startbtn{

@@ -11,19 +11,25 @@
   --bg2:#091428;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{
-  min-height:100%;
-  background:#010a13;           /* solid dark root — no white can ever show, any width/height */
-  overflow-x:hidden;
-}
+
+/* Root + body are plain full-width blocks with a solid dark fill.
+   NO flex/grid on the body: the layout can't shrink-wrap, so the page
+   always fills the whole viewport (no white edge, ever). */
+html{background:var(--bg0);overflow-x:hidden}
 body{
-  font-family:"Trebuchet MS","Segoe UI",sans-serif;
-  background:radial-gradient(circle at 50% 30%, #12213a 0%, var(--bg1) 45%, var(--bg0) 100%) no-repeat;
-  color:var(--gold-bright);
-  display:flex;                 /* centring via margin:auto on .stage keeps it scroll-safe */
+  width:100%;
   min-height:100vh;
-  overflow-x:hidden;            /* allow vertical scroll when content is taller than the screen */
+  background:var(--bg0);
+  color:var(--gold-bright);
+  font-family:"Trebuchet MS","Segoe UI",sans-serif;
+  overflow-x:hidden;
   user-select:none;
+}
+/* Gradient backdrop as a fixed layer — position:fixed;inset:0 always spans the
+   full viewport, independent of the document flow. Sits behind all content. */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(circle at 50% 30%, #12213a 0%, var(--bg1) 45%, var(--bg0) 100%);
 }
 
 /* floating void particles */
@@ -42,12 +48,14 @@ body{
 .flash.go{animation:flash .35s}
 @keyframes flash{0%{opacity:.6;background:#fff}100%{opacity:0}}
 
-/* stage + header — fluid, so no shell breakpoints needed */
+/* Content column — plain block centring (margin:0 auto). The single most
+   reliable layout primitive; works identically in every browser. Top-aligned
+   with generous padding, so it never gets clipped and always scrolls cleanly. */
 .stage{
   position:relative;z-index:1;
-  width:min(720px,94vw);
-  margin:auto;              /* centres AND stays scrollable when taller than the viewport */
-  padding:clamp(14px,4vw,22px) clamp(12px,3vw,26px) clamp(20px,4vw,26px);
+  width:100%;max-width:720px;
+  margin:0 auto;
+  padding:clamp(18px,4vw,40px) clamp(12px,3vw,26px) clamp(28px,5vw,48px);
   text-align:center;
 }
 .title{
