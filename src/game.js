@@ -8,6 +8,7 @@ import { teamHit } from './dragon.js';
 import { judgeSmite } from './scoring.js';
 import { showResult } from './results.js';
 import { reportWin } from './leaderboard-view.js';
+import { strike } from './lightning.js';
 
 function scheduleHit(delay){ state.nextHitAt = performance.now() + delay; }
 
@@ -84,9 +85,9 @@ function replay(el, cls){
   el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls);
 }
 
-// The Smite cast: a yellow lightning bolt strikes the Baron + a light white flash.
+// The Smite cast: a procedural lightning bolt strikes the Baron + a light flash.
 function playSmiteFx(){
-  replay(els.smiteFx, 'strike');
+  strike(els.smiteCanvas);
   replay(els.flash, 'go');
 }
 

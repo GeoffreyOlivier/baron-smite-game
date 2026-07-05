@@ -16,7 +16,7 @@ export const els = {
 
   baronImg:   $('baronImg'),
   baronSvg:   $('baronSvg'),
-  smiteFx:    $('smiteFx'),
+  smiteCanvas:$('smiteCanvas'),
   team:       $('team'),
 
   hpfill:     $('hpfill'),
