@@ -1,9 +1,9 @@
 // Game constants and tuning — the single place to balance the game.
 
-export const SMITE_DMG = 1200;              // Smite's flat true damage
+export const SMITE_DMG = 1400;              // Smite's flat true damage
 
 // Smite window: secure between WINDOW.lo and WINDOW.hi (closest to hi = best)
-export const WINDOW = { lo: 1000, hi: SMITE_DMG };
+export const WINDOW = { lo: 1200, hi: SMITE_DMG };
 
 // Baron starting HP: random in [min, min + spread] so timing can't be memorised
 export const HP = { min: 12500, spread: 4000 };
@@ -24,9 +24,9 @@ export const CADENCE = { min: 75, spread: 55 };
 
 // Grade thresholds (HP at Smite) for a secured Baron
 export const GRADES = [
-  { min: 1180, label: 'JACKPOT !! 🏆', note: 'Pile sur les 1200. Steal de légende.' },
-  { min: 1125, label: 'PERFECT ⭐',    note: 'Timing de challenger.' },
-  { min: 1050, label: 'GOOD ✅',       note: 'Propre, bien sécurisé.' },
+  { min: 1380, label: 'JACKPOT !! 🏆', note: 'Pile sur les 1400. Steal de légende.' },
+  { min: 1325, label: 'PERFECT ⭐',    note: 'Timing de challenger.' },
+  { min: 1250, label: 'GOOD ✅',       note: 'Propre, bien sécurisé.' },
   { min: 0,    label: 'BOF 😬',        note: "Ça passe… mais t'étais à deux doigts du steal." },
 ];
 

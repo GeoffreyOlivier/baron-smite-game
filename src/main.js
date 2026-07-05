@@ -10,9 +10,11 @@ import { wireInput } from './input.js';
 import { setPhase } from './render.js';
 import { getPseudo } from './leaderboard.js';
 import { refreshLeaderboard } from './leaderboard-view.js';
+import { SMITE_DMG } from './config.js';
 
 // The SVG Baron is active until the real render loads and swaps itself in.
 state.baron = els.baronSvg;
+els.smiteDmg.textContent = SMITE_DMG; // damage number on the Smite icon
 
 buildParticles();
 initDragon();          // Smite icon + team (async, optional)

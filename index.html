@@ -17,11 +17,11 @@
     <div class="title">Fosse du Baron</div>
     <div class="subtitle">BARON SMITE</div>
     <p class="start-rule">
-      Le Smite inflige <b>1200 dégâts bruts</b>.<br>
+      Le Smite inflige <b>1400 dégâts bruts</b>.<br>
       Toute l'équipe frappe le Baron — sa vie chute de façon saccadée.<br>
-      Smite <b>le plus près possible de 1200 PV</b> :<br>
-      1200 = <b>JACKPOT</b> · 1150 = PERFECT · 1100 = GOOD · 1000 = BOF.<br>
-      Au-dessus de 1200 : le Smite ne tue pas. Sous 1000 : volé.
+      Smite <b>le plus près possible de 1400 PV</b> :<br>
+      1400 = <b>JACKPOT</b> · 1350 = PERFECT · 1300 = GOOD · 1200 = BOF.<br>
+      Au-dessus de 1400 : le Smite ne tue pas. Sous 1200 : volé.
     </p>
     <input class="pseudo-input" id="pseudo" type="text" maxlength="20"
            placeholder="Ton pseudo" autocomplete="off" spellcheck="false">
@@ -75,18 +75,20 @@
     <div class="hpnum"><span id="hpnum">0</span> <small>PV</small></div>
   </div>
 
-  <button class="smitebtn" id="smite">
+  <button class="smitebtn" id="smite" title="Smite — touche F ou clic">
     <span class="icon" id="smiteEmoji">🔥</span>
     <img class="icon-img" id="smiteIcon" alt="Smite" hidden>
-    <span class="lbl">SMITE</span>
-    <span class="key">[ F ] ou clic</span>
+    <span class="smite-dmg" id="smiteDmg">1400</span>
   </button>
 
-  <div class="hint">
-    Smite <b>le plus près possible de 1200 PV</b> (sans dépasser) :
-    1200 = <b>jackpot</b>, 1150 perfect, 1100 good, 1000 bof.
-    Au-dessus de 1200 le Smite ne tue pas ; sous 1000 c'est volé.
-  </div>
+  <details class="rules">
+    <summary>ⓘ&nbsp; Règles</summary>
+    <div class="rules-pop">
+      Smite <b>le plus près possible de 1400 PV</b> (sans dépasser) :
+      1400 = <b>jackpot</b>, 1350 perfect, 1300 good, 1200 bof.
+      Au-dessus de 1400 le Smite ne tue pas ; sous 1200 c'est volé.
+    </div>
+  </details>
 
   <div class="result" id="result">
     <div class="grade" id="grade"></div>

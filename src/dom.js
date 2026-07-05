@@ -25,6 +25,7 @@ export const els = {
   smiteBtn:   $('smite'),
   smiteIcon:  $('smiteIcon'),
   smiteEmoji: $('smiteEmoji'),
+  smiteDmg:   $('smiteDmg'),
 
   result:     $('result'),
   grade:      $('grade'),

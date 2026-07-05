@@ -1,13 +1,14 @@
 /* ===== Start screen overlay ===== */
 .startscreen{
   position:fixed;inset:0;z-index:20;
-  display:flex;align-items:center;justify-content:center;
+  display:flex;                 /* centring via margin:auto keeps the card scrollable */
+  overflow-y:auto;
   background:radial-gradient(circle at 50% 35%, rgba(18,33,58,.9), rgba(1,10,19,.97));
   -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
   transition:opacity .35s;
 }
 .startscreen.hide{opacity:0;pointer-events:none}
-.start-card{text-align:center;max-width:470px;padding:22px}
+.start-card{text-align:center;max-width:470px;padding:22px;margin:auto}
 .start-rule{margin:16px auto 28px;font-size:15px;line-height:1.8;color:var(--gold-bright);opacity:.92}
 .start-rule b{color:var(--blue)}
 .startbtn{
@@ -31,3 +32,11 @@
 
 .start-keys{margin-top:22px;font-size:12px;letter-spacing:1px;color:var(--gold);opacity:.7}
 .start-keys b{color:var(--gold-bright)}
+
+/* ===== Mobile (start screen) ===== */
+@media (max-width:480px){
+  .start-card{padding:16px}
+  .start-rule{font-size:13.5px;line-height:1.7;margin:12px auto 20px}
+  .startbtn{font-size:18px;padding:14px 36px}
+  .pseudo-input{margin-bottom:12px}
+}

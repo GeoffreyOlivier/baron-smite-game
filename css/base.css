@@ -11,14 +11,15 @@
   --bg2:#091428;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
+html{height:100%}
 body{
   font-family:"Trebuchet MS","Segoe UI",sans-serif;
-  background:radial-gradient(circle at 50% 30%, #12213a 0%, var(--bg1) 45%, var(--bg0) 100%);
+  /* fixed so the gradient doesn't scroll with the (now scrollable) content */
+  background:radial-gradient(circle at 50% 30%, #12213a 0%, var(--bg1) 45%, var(--bg0) 100%) fixed;
   color:var(--gold-bright);
-  display:flex;align-items:center;justify-content:center;
-  min-height:100%;
-  overflow:hidden;
+  display:flex;                 /* centring via margin:auto on .stage keeps it scroll-safe */
+  min-height:100vh;
+  overflow-x:hidden;            /* allow vertical scroll when content is taller than the screen */
   user-select:none;
 }
 
@@ -42,6 +43,7 @@ body{
 .stage{
   position:relative;z-index:1;
   width:min(720px,94vw);
+  margin:auto;              /* centres AND stays scrollable when taller than the viewport */
   padding:22px 26px 26px;
   text-align:center;
 }
@@ -55,4 +57,11 @@ body{
   -webkit-background-clip:text;background-clip:text;color:transparent;
   text-shadow:0 0 30px rgba(200,170,110,.15);
   margin-bottom:18px;
+}
+
+/* ===== Mobile (shell) ===== */
+@media (max-width:480px){
+  .stage{padding:14px 12px 20px}
+  .title{font-size:11px;letter-spacing:3px}
+  .subtitle{font-size:21px;margin-bottom:10px}
 }
