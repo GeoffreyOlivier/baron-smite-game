@@ -155,6 +155,10 @@ img.baron{width:auto;height:clamp(150px,42vw,205px);object-fit:contain;
 .scores{margin-top:14px;font-size:12px;letter-spacing:2px;color:var(--gold);opacity:.75}
 .scores b{color:var(--void-bright)}
 
+/* ===== Ko-fi support button ===== */
+.kofi{margin:clamp(18px,4vw,24px) auto 0;text-align:center;min-height:36px}
+.kofi img{display:inline-block;vertical-align:middle}
+
 /* ===== Legal (Riot Legal Jibber Jabber) ===== */
 .legal{
   margin:clamp(24px,6vw,40px) auto 0;max-width:560px;

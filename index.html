@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Baron Smite — Secure the Nashor</title>
-<link rel="stylesheet" href="css/base.css?v=9">
-<link rel="stylesheet" href="css/components.css?v=9">
-<link rel="stylesheet" href="css/screens.css?v=9">
+<link rel="stylesheet" href="css/base.css?v=10">
+<link rel="stylesheet" href="css/components.css?v=10">
+<link rel="stylesheet" href="css/screens.css?v=10">
 </head>
 <body>
 <div class="particles" id="particles"></div>
@@ -104,6 +104,8 @@
     <ol class="lb-list" id="lbList"></ol>
   </div>
 
+  <div class="kofi" id="kofi"></div>
+
   <p class="legal">
     Smite the Baron n'est pas approuvé par Riot Games et ne reflète pas les points de vue
     ou opinions de Riot Games ni de toute personne officiellement impliquée dans la production
@@ -113,5 +115,25 @@
 </div>
 
 <script type="module" src="src/main.js?v=8"></script>
+
+<!-- Ko-fi support button (injected into #kofi without document.write) -->
+<script src="https://storage.ko-fi.com/cdn/widget/Widget_2.js"></script>
+<script>
+  (function(){
+    try{
+      kofiwidget2.init('Support me on Ko-fi', '#9e4cb5', 'C1L722NSIU');
+      var html = kofiwidget2.getHTML ? kofiwidget2.getHTML() : null;
+      if(!html){                       // fallback: capture draw()'s document.write output
+        var buf = '', orig = document.write;
+        document.write = function(s){ buf += s; };
+        kofiwidget2.draw();
+        document.write = orig;
+        html = buf;
+      }
+      var c = document.getElementById('kofi');
+      if(c && html) c.innerHTML = html;
+    }catch(e){}
+  })();
+</script>
 </body>
 </html>
