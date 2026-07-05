@@ -20,8 +20,15 @@ export function wireInput(){
 
   window.addEventListener('keydown', (e) => {
     const k = e.key.toLowerCase();
+    const typing = e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement;
+
+    // Enter (from the pseudo field or the start screen) launches the game
+    if(k === 'enter' && !els.startScreen.classList.contains('hide')){ e.preventDefault(); restart(); return; }
+
+    // While typing in a field, never hijack keys (so "jeff", spaces, "r"… work)
+    if(typing) return;
+
     if(k === 'f' || k === ' '){ e.preventDefault(); if(state.running) doSmite(); }
     else if(k === 'r'){ e.preventDefault(); restart(); }
-    else if(k === 'enter' && !els.startScreen.classList.contains('hide')){ e.preventDefault(); restart(); }
   });
 }

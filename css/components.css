@@ -68,7 +68,7 @@ img.baron{width:auto;height:clamp(150px,42vw,205px);object-fit:contain;
 
 /* ===== Smite button (in-game spell look: icon + damage number, no border) ===== */
 .smitebtn{
-  margin-top:clamp(12px,3vw,16px);position:relative;
+  margin:clamp(12px,3vw,16px) auto 0;position:relative;   /* auto = centred (flex box is block-level) */
   width:clamp(92px,26vw,112px);height:clamp(92px,26vw,112px);border-radius:12px;padding:0;cursor:pointer;
   border:none;background:#0a1a2a;overflow:hidden;
   display:flex;align-items:center;justify-content:center;   /* centres the emoji fallback fluidly */
