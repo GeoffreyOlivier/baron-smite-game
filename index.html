@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baron Smite — Secure the Nashor</title>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/screens.css">
+</head>
+<body>
+<div class="particles" id="particles"></div>
+<div class="flash" id="flash"></div>
+
+<div class="startscreen" id="startscreen">
+  <div class="start-card">
+    <div class="title">Fosse du Baron</div>
+    <div class="subtitle">BARON SMITE</div>
+    <p class="start-rule">
+      Le Smite inflige <b>1200 dégâts bruts</b>.<br>
+      Toute l'équipe frappe le Baron — sa vie chute de façon saccadée.<br>
+      Smite <b>le plus près possible de 1200 PV</b> :<br>
+      1200 = <b>JACKPOT</b> · 1150 = PERFECT · 1100 = GOOD · 1000 = BOF.<br>
+      Au-dessus de 1200 : le Smite ne tue pas. Sous 1000 : volé.
+    </p>
+    <button class="startbtn" id="startbtn">COMMENCER</button>
+    <p class="start-keys">Smite&nbsp;: <b>F</b> · clic · <b>Espace</b>&nbsp;&nbsp;|&nbsp;&nbsp;Rejouer&nbsp;: <b>R</b></p>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="title">Fosse du Baron</div>
+  <div class="subtitle">BARON SMITE</div>
+
+  <div class="pit">
+    <div class="pit-glow"></div>
+    <img class="baron" id="baronImg" alt="Baron Nashor" hidden>
+    <svg class="baron" id="baronSvg" viewBox="0 0 100 100" aria-hidden="true">
+      <defs>
+        <radialGradient id="vg" cx="50%" cy="40%" r="60%">
+          <stop offset="0%" stop-color="#c98bff"/>
+          <stop offset="55%" stop-color="#7b2fbf"/>
+          <stop offset="100%" stop-color="#3a1163"/>
+        </radialGradient>
+      </defs>
+      <!-- horns -->
+      <path d="M30 30 Q18 8 34 18 Q30 26 38 34 Z" fill="#e9d7ff"/>
+      <path d="M70 30 Q82 8 66 18 Q70 26 62 34 Z" fill="#e9d7ff"/>
+      <!-- head -->
+      <path d="M50 20 C74 20 84 42 80 62 C76 84 60 92 50 92 C40 92 24 84 20 62 C16 42 26 20 50 20 Z" fill="url(#vg)" stroke="#2a0d47" stroke-width="2"/>
+      <!-- ridges -->
+      <path d="M50 24 L50 60" stroke="#4d1a7d" stroke-width="3" opacity=".6"/>
+      <!-- eyes -->
+      <ellipse cx="39" cy="52" rx="7" ry="9" fill="#0a1420"/>
+      <ellipse cx="61" cy="52" rx="7" ry="9" fill="#0a1420"/>
+      <circle cx="39" cy="50" r="3" fill="#7CFC00"><animate attributeName="r" values="3;3.6;3" dur="2s" repeatCount="indefinite"/></circle>
+      <circle cx="61" cy="50" r="3" fill="#7CFC00"><animate attributeName="r" values="3;3.6;3" dur="2s" repeatCount="indefinite"/></circle>
+      <!-- mouth / fangs -->
+      <path d="M36 70 Q50 82 64 70 Q58 78 50 78 Q42 78 36 70 Z" fill="#0a1420"/>
+      <path d="M42 71 L44 78 L46 71 Z" fill="#fff"/>
+      <path d="M54 71 L56 78 L58 71 Z" fill="#fff"/>
+    </svg>
+  </div>
+
+  <div class="team" id="team"></div>
+
+  <div class="hpwrap">
+    <div class="hpname"><span>Baron Nashor</span><b id="phase">Éveil…</b></div>
+    <div class="hpbar">
+      <div class="hpfill" id="hpfill" style="width:100%"></div>
+      <div class="hpticks"></div>
+    </div>
+    <div class="hpnum"><span id="hpnum">0</span> <small>PV</small></div>
+  </div>
+
+  <button class="smitebtn" id="smite">
+    <span class="icon" id="smiteEmoji">🔥</span>
+    <img class="icon-img" id="smiteIcon" alt="Smite" hidden>
+    <span class="lbl">SMITE</span>
+    <span class="key">[ F ] ou clic</span>
+  </button>
+
+  <div class="hint">
+    Smite <b>le plus près possible de 1200 PV</b> (sans dépasser) :
+    1200 = <b>jackpot</b>, 1150 perfect, 1100 good, 1000 bof.
+    Au-dessus de 1200 le Smite ne tue pas ; sous 1000 c'est volé.
+  </div>
+
+  <div class="result" id="result">
+    <div class="grade" id="grade"></div>
+    <div class="desc" id="desc"></div>
+    <button class="again" id="again">Rejouer</button>
+  </div>
+
+  <div class="scores">MEILLEUR SCORE&nbsp; <b id="best">—</b>&nbsp;&nbsp;·&nbsp;&nbsp;STREAK&nbsp; <b id="streak">0</b></div>
+</div>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

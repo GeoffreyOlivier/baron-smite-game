@@ -1,0 +1,58 @@
+/* ===== Design tokens, reset, page shell, ambient FX ===== */
+:root{
+  --gold:#c8aa6e;
+  --gold-bright:#f0e6d2;
+  --void:#7b2fbf;
+  --void-bright:#b06bff;
+  --blue:#0ac8b9;
+  --danger:#e04b4b;
+  --bg0:#010a13;
+  --bg1:#0a1420;
+  --bg2:#091428;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Trebuchet MS","Segoe UI",sans-serif;
+  background:radial-gradient(circle at 50% 30%, #12213a 0%, var(--bg1) 45%, var(--bg0) 100%);
+  color:var(--gold-bright);
+  display:flex;align-items:center;justify-content:center;
+  min-height:100%;
+  overflow:hidden;
+  user-select:none;
+}
+
+/* floating void particles */
+.particles{position:fixed;inset:0;pointer-events:none;z-index:0}
+.particles span{
+  position:absolute;bottom:-20px;width:4px;height:4px;border-radius:50%;
+  background:var(--void-bright);box-shadow:0 0 8px 2px var(--void);
+  opacity:.5;animation:rise linear infinite;
+}
+@keyframes rise{
+  to{transform:translateY(-100vh) translateX(30px);opacity:0}
+}
+
+/* smite / kill full-screen flash */
+.flash{position:fixed;inset:0;z-index:5;pointer-events:none;opacity:0}
+.flash.go{animation:flash .35s}
+@keyframes flash{0%{opacity:.6;background:#fff}100%{opacity:0}}
+
+/* stage + header */
+.stage{
+  position:relative;z-index:1;
+  width:min(720px,94vw);
+  padding:22px 26px 26px;
+  text-align:center;
+}
+.title{
+  font-size:13px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);opacity:.85;margin-bottom:2px;
+}
+.subtitle{
+  font-size:26px;font-weight:bold;letter-spacing:1px;
+  background:linear-gradient(180deg,#f0e6d2,#c8aa6e);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 0 30px rgba(200,170,110,.15);
+  margin-bottom:18px;
+}

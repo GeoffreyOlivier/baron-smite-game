@@ -1,0 +1,120 @@
+/* ===== Baron ===== */
+.pit{
+  position:relative;margin:6px auto 16px;width:250px;height:210px;
+  display:flex;align-items:center;justify-content:center;
+}
+.pit-glow{
+  position:absolute;width:230px;height:230px;border-radius:50%;
+  background:radial-gradient(circle,rgba(123,47,191,.45) 0%,transparent 65%);
+  animation:pulse 3s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{transform:scale(.9);opacity:.7}50%{transform:scale(1.1);opacity:1}}
+.baron{width:170px;height:170px;filter:drop-shadow(0 0 18px rgba(176,107,255,.6));transition:transform .1s}
+/* real Baron Nashor render (transparent PNG) — tall, so size by height */
+img.baron{width:auto;height:205px;object-fit:contain;
+  filter:drop-shadow(0 0 20px rgba(176,107,255,.65))}
+/* hit feedback: a brief glow flash — the Baron stays still (no shake) */
+.baron.hit{animation:hitflash .16s}
+@keyframes hitflash{
+  0%{filter:brightness(1.5) drop-shadow(0 0 26px rgba(176,107,255,.95))}
+  100%{filter:brightness(1) drop-shadow(0 0 18px rgba(176,107,255,.6))}
+}
+.baron.dead{animation:die 1s forwards}
+@keyframes die{to{transform:scale(.2) rotate(120deg) translateY(60px);opacity:0;filter:grayscale(1)}}
+
+/* ===== Health bar ===== */
+.hpwrap{position:relative;margin:0 auto 6px;width:100%;max-width:560px}
+.hpname{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);
+  margin-bottom:5px;padding:0 2px;
+}
+.hpname b{color:var(--void-bright);font-size:14px}
+.hpbar{
+  position:relative;height:30px;border:2px solid var(--gold);border-radius:4px;
+  background:#04101c;overflow:hidden;
+  box-shadow:0 0 0 1px #000, inset 0 0 12px rgba(0,0,0,.8);
+}
+.hpfill{
+  position:absolute;left:0;top:0;bottom:0;
+  background:linear-gradient(180deg,#d94a4a 0%,#a01f1f 55%,#7a1414 100%);
+  box-shadow:inset 0 2px 4px rgba(255,255,255,.25);
+  transition:width .12s cubic-bezier(.2,.8,.3,1);
+}
+/* segment ticks */
+.hpticks{position:absolute;inset:0;pointer-events:none;
+  background-image:repeating-linear-gradient(90deg,transparent,transparent 27px,rgba(0,0,0,.35) 27px,rgba(0,0,0,.35) 28px)}
+.hpnum{
+  margin-top:8px;font-size:22px;font-weight:bold;letter-spacing:1px;
+  font-variant-numeric:tabular-nums;color:var(--gold-bright);
+}
+.hpnum small{font-size:13px;color:var(--gold);opacity:.7}
+
+/* ===== Team (Data Dragon champion icons) ===== */
+.team{display:flex;justify-content:center;gap:10px;min-height:44px;margin:2px 0 14px;flex-wrap:wrap}
+.team .champ{
+  width:40px;height:40px;border-radius:50%;overflow:hidden;
+  border:2px solid var(--gold);background:#04101c;
+  box-shadow:0 0 0 1px #000, 0 2px 6px rgba(0,0,0,.6);
+  transition:transform .09s, box-shadow .12s, border-color .12s;
+}
+.team .champ img{width:100%;height:100%;object-fit:cover;display:block}
+.team .champ.attacking{
+  transform:translateY(-5px) scale(1.12);
+  border-color:var(--void-bright);
+  box-shadow:0 0 12px 2px rgba(176,107,255,.8);
+}
+
+/* ===== Smite button ===== */
+.smitebtn{
+  margin-top:22px;position:relative;
+  width:130px;height:130px;border-radius:16px;cursor:pointer;
+  border:2px solid var(--gold);background:#0a1a2a;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  color:var(--gold-bright);font-family:inherit;
+  box-shadow:0 0 22px rgba(240,120,40,.35), inset 0 0 20px rgba(240,120,40,.15);
+  transition:transform .08s, box-shadow .2s;
+}
+.smitebtn:hover{box-shadow:0 0 34px rgba(240,120,40,.6), inset 0 0 24px rgba(240,120,40,.25)}
+.smitebtn:active{transform:scale(.94)}
+.smitebtn:disabled{opacity:.35;cursor:not-allowed;filter:grayscale(.6)}
+.smitebtn .icon{font-size:44px;line-height:1;filter:drop-shadow(0 0 8px rgba(255,160,40,.8))}
+.smitebtn .icon-img{width:52px;height:52px;border-radius:8px;border:1px solid var(--gold);
+  filter:drop-shadow(0 0 8px rgba(255,160,40,.7))}
+.smitebtn .lbl{font-size:16px;font-weight:bold;letter-spacing:3px}
+.smitebtn .key{font-size:11px;color:var(--gold);opacity:.8;letter-spacing:1px}
+
+/* ===== Hint ===== */
+.hint{margin-top:16px;font-size:13px;color:var(--gold);opacity:.7;line-height:1.6;max-width:460px;margin-left:auto;margin-right:auto}
+.hint b{color:var(--blue)}
+
+/* ===== Result overlay ===== */
+.result{
+  margin-top:18px;min-height:70px;display:flex;flex-direction:column;align-items:center;gap:4px;
+  opacity:0;transform:translateY(8px);transition:.3s;pointer-events:none;
+}
+.result.show{opacity:1;transform:none}
+.result .grade{font-size:30px;font-weight:bold;letter-spacing:2px}
+.result .desc{font-size:14px;color:var(--gold-bright);line-height:1.5}
+.result .pvbig{
+  display:block;margin:6px 0 2px;
+  font-size:40px;font-weight:bold;letter-spacing:1px;
+  font-variant-numeric:tabular-nums;color:var(--gold-bright);
+  text-shadow:0 0 22px rgba(240,230,210,.25);
+}
+.result .pvbig small{font-size:16px;color:var(--gold);opacity:.75;letter-spacing:2px}
+.result .again{
+  margin-top:8px;pointer-events:auto;cursor:pointer;
+  background:transparent;border:2px solid var(--gold);color:var(--gold-bright);
+  padding:8px 22px;border-radius:4px;font-family:inherit;font-size:14px;letter-spacing:2px;
+  text-transform:uppercase;transition:.2s;
+}
+.result .again:hover{background:var(--gold);color:#04101c}
+
+.win{color:#8be36b;text-shadow:0 0 20px rgba(139,227,107,.5)}
+.early{color:#e0b84b;text-shadow:0 0 20px rgba(224,184,75,.4)}
+.steal{color:var(--danger);text-shadow:0 0 20px rgba(224,75,75,.5)}
+
+/* ===== Scores ===== */
+.scores{margin-top:14px;font-size:12px;letter-spacing:2px;color:var(--gold);opacity:.75}
+.scores b{color:var(--void-bright)}
