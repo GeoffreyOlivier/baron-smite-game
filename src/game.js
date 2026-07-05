@@ -8,7 +8,6 @@ import { teamHit } from './dragon.js';
 import { judgeSmite } from './scoring.js';
 import { showResult } from './results.js';
 import { reportWin } from './leaderboard-view.js';
-import { strike } from './lightning.js';
 
 function scheduleHit(delay){ state.nextHitAt = performance.now() + delay; }
 
@@ -19,6 +18,7 @@ export function newRound(){
   state.maxHp = HP.min + Math.floor(Math.random() * HP.spread);
   state.hp = state.maxHp;
   render();
+  els.hpSmite.classList.remove('show');   // clear any leftover Smite chunk
   els.result.classList.remove('show');
   els.smiteBtn.disabled = false;
   state.baron.classList.remove('dead');
@@ -85,31 +85,41 @@ function replay(el, cls){
   el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls);
 }
 
-// The Smite cast: a procedural lightning bolt strikes the Baron + a light flash.
-function playSmiteFx(){
-  strike(els.smiteCanvas);
-  replay(els.flash, 'go');
+// Show the slice of HP that Smite is about to remove (up to 1400) in yellow,
+// pinned to the right end of the current fill.
+function showSmiteChunk(snap){
+  const rightPct = Math.min(100, snap / state.maxHp * 100);
+  const leftPct = Math.max(0, (snap - SMITE_DMG) / state.maxHp * 100);
+  els.hpSmite.style.left = leftPct + '%';
+  els.hpSmite.style.width = (rightPct - leftPct) + '%';
+  els.hpSmite.classList.add('show');
 }
+function hideSmiteChunk(){ els.hpSmite.classList.remove('show'); }
+
+const SMITE_DELAY = 480; // ms the yellow chunk stays before it's chunked off
 
 export function doSmite(){
   if(!state.running) return;
   stopLoop();
-  playSmiteFx();                          // lightning + flash on every Smite cast
+  replay(els.flash, 'go');                 // light white flash
 
   const snap = state.hp;
   const outcome = judgeSmite(snap);
+  const newHp = outcome.type === 'early' ? snap - SMITE_DMG : 0;
+  const gen = state.loopGen;
 
-  if(outcome.type === 'early'){
-    state.hp = snap - SMITE_DMG;          // Smite chunk, but the Baron survives
+  // 1) highlight the 1400 PV about to be removed, in yellow (bar stays at snap)
+  showSmiteChunk(snap);
+
+  // 2) after a beat, chunk it off: the bar drops and the result is revealed
+  setTimeout(() => {
+    if(gen !== state.loopGen) return;      // a new round started — abort
+    hideSmiteChunk();
+    state.hp = newHp;
     render();
-  }else if(outcome.type === 'lowsteal'){
-    state.hp = 0; render();
-    state.baron.classList.add('dead');
-  }else{                                  // win
-    state.baron.classList.add('dead');
-    state.hp = 0; render();
-  }
-  endRound(outcome, snap);
+    if(outcome.type !== 'early') state.baron.classList.add('dead');
+    endRound(outcome, snap);
+  }, SMITE_DELAY);
 }
 
 // Baron died to the team before the player Smited.
