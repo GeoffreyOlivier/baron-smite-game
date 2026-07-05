@@ -30,6 +30,16 @@ export const GRADES = [
   { min: 0,    label: 'BOF 😬',        note: "Ça passe… mais t'étais à deux doigts du steal." },
 ];
 
+// ---- Global leaderboard (Supabase) ----
+// Coller l'URL du projet + la clé "anon public" (Settings → API dans Supabase).
+// La clé anon est PUBLIQUE par conception (protégée par RLS) — OK dans le repo.
+// Tant que c'est vide, le classement est simplement masqué et le jeu marche.
+export const SUPABASE = {
+  url: '',      // ex: https://xxxxxxxx.supabase.co
+  anonKey: '',  // clé anon public
+};
+export const LEADERBOARD = { top: 15, fetchLimit: 100 };
+
 // ---- Riot assets ----
 export const DDRAGON = 'https://ddragon.leagueoflegends.com'; // static CDN, no API key
 export const TEAM_SIZE = 5;

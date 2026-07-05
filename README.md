@@ -43,6 +43,40 @@ baron-smite/
 Graphe de dépendances (sans cycle) : `state` et `config` sont les feuilles ;
 `game` orchestre la logique ; `main` câble le tout.
 
+## Classement mondial (Supabase)
+
+Optionnel — sans clés, le classement est masqué et le jeu fonctionne. Pour
+l'activer (aucune inscription côté joueurs, juste un pseudo mémorisé en local) :
+
+1. Créer un projet sur [supabase.com](https://supabase.com) (gratuit).
+2. **SQL Editor** → coller et exécuter :
+
+   ```sql
+   create table public.scores (
+     id         bigint generated always as identity primary key,
+     pseudo     text not null check (char_length(pseudo) between 1 and 20),
+     score      int  not null check (score >= 0 and score <= 100),
+     created_at timestamptz not null default now()
+   );
+   alter table public.scores enable row level security;
+
+   -- lecture publique du classement
+   create policy "read scores"   on public.scores for select using (true);
+   -- envoi d'un score par un visiteur anonyme (bornes garanties par les CHECK)
+   create policy "insert scores" on public.scores for insert with check (true);
+
+   create index scores_score_idx on public.scores (score desc);
+   ```
+
+3. **Settings → API** → copier *Project URL* et la clé *anon public*.
+4. Les coller dans [`src/config.js`](src/config.js) → objet `SUPABASE`.
+5. `git commit` + `git push` → Vercel redéploie → classement en ligne.
+
+> ⚠️ La clé *anon* est publique par conception (protégée par RLS) — sans danger
+> dans le repo. Sans serveur de validation, un score reste *falsifiable* ; les
+> `CHECK` limitent au moins les valeurs (score 0-100, pseudo 1-20). Pour bloquer
+> la triche il faudrait une fonction serveur (hors périmètre « au plus simple »).
+
 ## Assets Riot
 
 - **Data Dragon** (`ddragon.leagueoflegends.com`, CDN statique, sans clé) :

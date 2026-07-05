@@ -19,5 +19,15 @@
 }
 .startbtn:hover{box-shadow:0 0 46px rgba(200,170,110,.7);transform:translateY(-2px)}
 .startbtn:active{transform:scale(.96)}
+.pseudo-input{
+  display:block;margin:0 auto 14px;width:230px;max-width:82%;
+  padding:11px 14px;border-radius:6px;text-align:center;
+  font-family:inherit;font-size:15px;letter-spacing:1px;
+  color:var(--gold-bright);background:#0a1a2a;
+  border:2px solid var(--gold);outline:none;transition:border-color .2s, box-shadow .2s;
+}
+.pseudo-input::placeholder{color:var(--gold);opacity:.5}
+.pseudo-input:focus{border-color:var(--gold-bright);box-shadow:0 0 14px rgba(200,170,110,.35)}
+
 .start-keys{margin-top:22px;font-size:12px;letter-spacing:1px;color:var(--gold);opacity:.7}
 .start-keys b{color:var(--gold-bright)}

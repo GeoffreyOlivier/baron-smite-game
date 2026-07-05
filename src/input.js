@@ -3,9 +3,11 @@
 import { els } from './dom.js';
 import { state } from './state.js';
 import { newRound, start, doSmite } from './game.js';
+import { setPseudo } from './leaderboard.js';
 
 // Hide the start screen and (re)launch a fresh round.
 export function restart(){
+  if(els.pseudo.value.trim()) setPseudo(els.pseudo.value);
   els.startScreen.classList.add('hide');
   newRound();
   start();

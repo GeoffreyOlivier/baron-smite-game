@@ -7,6 +7,7 @@ import { render, setPhase, setScores } from './render.js';
 import { teamHit } from './dragon.js';
 import { judgeSmite } from './scoring.js';
 import { showResult } from './results.js';
+import { reportWin } from './leaderboard-view.js';
 
 function scheduleHit(delay){ state.nextHitAt = performance.now() + delay; }
 
@@ -69,6 +70,7 @@ function endRound(outcome, snap){
   if(outcome.type === 'win'){
     state.streak++;
     if(state.best === null || outcome.score > state.best) state.best = outcome.score;
+    reportWin(outcome.score); // submit to the global leaderboard + refresh
   }else{
     state.streak = 0;
   }

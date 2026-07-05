@@ -9,6 +9,10 @@ export const els = {
 
   startScreen:$('startscreen'),
   startBtn:   $('startbtn'),
+  pseudo:     $('pseudo'),
+
+  leaderboard:$('leaderboard'),
+  lbList:     $('lbList'),
 
   baronImg:   $('baronImg'),
   baronSvg:   $('baronSvg'),

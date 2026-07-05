@@ -8,14 +8,19 @@ import { loadBaron } from './baron.js';
 import { newRound } from './game.js';
 import { wireInput } from './input.js';
 import { setPhase } from './render.js';
+import { getPseudo } from './leaderboard.js';
+import { refreshLeaderboard } from './leaderboard-view.js';
 
 // The SVG Baron is active until the real render loads and swaps itself in.
 state.baron = els.baronSvg;
 
 buildParticles();
-initDragon();   // Smite icon + team (async, optional)
-loadBaron();    // real Baron render (async, optional)
+initDragon();          // Smite icon + team (async, optional)
+loadBaron();           // real Baron render (async, optional)
 wireInput();
+
+els.pseudo.value = getPseudo(); // restore saved pseudo
+refreshLeaderboard();           // load the global board (hidden if not configured)
 
 // Show the start screen with a full HP bar, but don't drain until "Commencer".
 newRound();

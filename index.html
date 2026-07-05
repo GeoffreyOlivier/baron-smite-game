@@ -23,6 +23,8 @@
       1200 = <b>JACKPOT</b> · 1150 = PERFECT · 1100 = GOOD · 1000 = BOF.<br>
       Au-dessus de 1200 : le Smite ne tue pas. Sous 1000 : volé.
     </p>
+    <input class="pseudo-input" id="pseudo" type="text" maxlength="20"
+           placeholder="Ton pseudo" autocomplete="off" spellcheck="false">
     <button class="startbtn" id="startbtn">COMMENCER</button>
     <p class="start-keys">Smite&nbsp;: <b>F</b> · clic · <b>Espace</b>&nbsp;&nbsp;|&nbsp;&nbsp;Rejouer&nbsp;: <b>R</b></p>
   </div>
@@ -93,6 +95,11 @@
   </div>
 
   <div class="scores">MEILLEUR SCORE&nbsp; <b id="best">—</b>&nbsp;&nbsp;·&nbsp;&nbsp;STREAK&nbsp; <b id="streak">0</b></div>
+
+  <div class="leaderboard" id="leaderboard" hidden>
+    <div class="lb-title">🏆 Classement mondial</div>
+    <ol class="lb-list" id="lbList"></ol>
+  </div>
 </div>
 
 <script type="module" src="src/main.js"></script>
