@@ -11,11 +11,14 @@
   --bg2:#091428;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{height:100%}
+html{
+  min-height:100%;
+  background:#010a13;           /* solid dark root — no white can ever show, any width/height */
+  overflow-x:hidden;
+}
 body{
   font-family:"Trebuchet MS","Segoe UI",sans-serif;
-  /* fixed so the gradient doesn't scroll with the (now scrollable) content */
-  background:radial-gradient(circle at 50% 30%, #12213a 0%, var(--bg1) 45%, var(--bg0) 100%) fixed;
+  background:radial-gradient(circle at 50% 30%, #12213a 0%, var(--bg1) 45%, var(--bg0) 100%) no-repeat;
   color:var(--gold-bright);
   display:flex;                 /* centring via margin:auto on .stage keeps it scroll-safe */
   min-height:100vh;
@@ -24,7 +27,7 @@ body{
 }
 
 /* floating void particles */
-.particles{position:fixed;inset:0;pointer-events:none;z-index:0}
+.particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .particles span{
   position:absolute;bottom:-20px;width:4px;height:4px;border-radius:50%;
   background:var(--void-bright);box-shadow:0 0 8px 2px var(--void);
