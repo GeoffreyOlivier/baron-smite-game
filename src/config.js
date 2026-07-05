@@ -35,8 +35,8 @@ export const GRADES = [
 // La clé anon est PUBLIQUE par conception (protégée par RLS) — OK dans le repo.
 // Tant que c'est vide, le classement est simplement masqué et le jeu marche.
 export const SUPABASE = {
-  url: '',      // ex: https://xxxxxxxx.supabase.co
-  anonKey: '',  // clé anon public
+  url: 'https://ezyyxswdpnrffnolrgrh.supabase.co',
+  anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6eXl4c3dkcG5yZmZub2xyZ3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMyNTYzNjUsImV4cCI6MjA5ODgzMjM2NX0.3LE6klPmZHGiOk3PUu-2yKTtCbFx_fLBhIauctMeoJs'
 };
 export const LEADERBOARD = { top: 15, fetchLimit: 100 };
 
