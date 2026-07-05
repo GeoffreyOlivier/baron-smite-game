@@ -33,6 +33,7 @@
 .gs-perfect{color:#8be36b}
 .gs-good{color:var(--blue)}
 .gs-bof{color:var(--gold);opacity:.72}
+.gs-nul{color:#8a8f99;opacity:.7}
 .start-fail{
   margin:0 auto clamp(18px,4vw,24px);
   font-size:11px;letter-spacing:.3px;color:var(--danger);opacity:.7;

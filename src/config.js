@@ -2,8 +2,9 @@
 
 export const SMITE_DMG = 1400;              // Smite's flat true damage
 
-// Smite window: secure between WINDOW.lo and WINDOW.hi (closest to hi = best)
-export const WINDOW = { lo: 1200, hi: SMITE_DMG };
+// Smite window: secure between WINDOW.lo and WINDOW.hi (closest to hi = best).
+// Below WINDOW.lo the Baron is stolen. Forgiving: window goes down to 1000.
+export const WINDOW = { lo: 1000, hi: SMITE_DMG };
 
 // Baron starting HP: random in [min, min + spread] so timing can't be memorised
 export const HP = { min: 12500, spread: 4000 };
@@ -27,7 +28,8 @@ export const GRADES = [
   { min: 1380, label: 'JACKPOT !! 🏆', note: 'Pile sur les 1400. Steal de légende.' },
   { min: 1325, label: 'PERFECT ⭐',    note: 'Timing de challenger.' },
   { min: 1250, label: 'GOOD ✅',       note: 'Propre, bien sécurisé.' },
-  { min: 0,    label: 'BOF 😬',        note: "Ça passe… mais t'étais à deux doigts du steal." },
+  { min: 1200, label: 'BOF 😬',        note: "Ça passe… mais t'étais pas loin du steal." },
+  { min: 0,    label: 'NUL 🥴',        note: 'Sécurisé de justesse — quel gâchis de Smite.' },
 ];
 
 // ---- Global leaderboard (Supabase) ----
