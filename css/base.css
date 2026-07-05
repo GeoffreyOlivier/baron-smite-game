@@ -45,8 +45,8 @@ body::before{
 
 /* smite / kill full-screen flash */
 .flash{position:fixed;inset:0;z-index:5;pointer-events:none;opacity:0}
-.flash.go{animation:flash .35s}
-@keyframes flash{0%{opacity:.6;background:#fff}100%{opacity:0}}
+.flash.go{animation:flash .3s ease-out}
+@keyframes flash{0%{opacity:.42;background:#fff}100%{opacity:0}}
 
 /* Content column — plain block centring (margin:0 auto). The single most
    reliable layout primitive; works identically in every browser. Top-aligned

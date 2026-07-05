@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Baron Smite — Secure the Nashor</title>
-<link rel="stylesheet" href="css/base.css?v=4">
-<link rel="stylesheet" href="css/components.css?v=4">
-<link rel="stylesheet" href="css/screens.css?v=4">
+<link rel="stylesheet" href="css/base.css?v=5">
+<link rel="stylesheet" href="css/components.css?v=5">
+<link rel="stylesheet" href="css/screens.css?v=5">
 </head>
 <body>
 <div class="particles" id="particles"></div>
@@ -36,6 +36,11 @@
 
   <div class="pit">
     <div class="pit-glow"></div>
+    <div class="smite-fx" id="smiteFx" aria-hidden="true">
+      <svg class="bolt" viewBox="0 0 40 200" preserveAspectRatio="none">
+        <path d="M24 0 L9 92 L20 92 L4 200 L31 78 L18 78 L30 0 Z"/>
+      </svg>
+    </div>
     <img class="baron" id="baronImg" alt="Baron Nashor" hidden>
     <svg class="baron" id="baronSvg" viewBox="0 0 100 100" aria-hidden="true">
       <defs>
@@ -104,6 +109,6 @@
   </div>
 </div>
 
-<script type="module" src="src/main.js?v=4"></script>
+<script type="module" src="src/main.js?v=5"></script>
 </body>
 </html>

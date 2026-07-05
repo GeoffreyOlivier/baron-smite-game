@@ -78,9 +78,22 @@ function endRound(outcome, snap){
   setScores();
 }
 
+// Restart a CSS animation by toggling its class (re-triggers on each cast).
+function replay(el, cls){
+  if(!el) return;
+  el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls);
+}
+
+// The Smite cast: a yellow lightning bolt strikes the Baron + a light white flash.
+function playSmiteFx(){
+  replay(els.smiteFx, 'strike');
+  replay(els.flash, 'go');
+}
+
 export function doSmite(){
   if(!state.running) return;
   stopLoop();
+  playSmiteFx();                          // lightning + flash on every Smite cast
 
   const snap = state.hp;
   const outcome = judgeSmite(snap);
@@ -92,7 +105,6 @@ export function doSmite(){
     state.hp = 0; render();
     state.baron.classList.add('dead');
   }else{                                  // win
-    els.flash.classList.remove('go'); void els.flash.offsetWidth; els.flash.classList.add('go');
     state.baron.classList.add('dead');
     state.hp = 0; render();
   }
